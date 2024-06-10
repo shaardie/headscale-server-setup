@@ -7,7 +7,7 @@
   roles:
     - lkiesow.verify_galaxy_versions
 
-- name: Deploy hedgedoc
+- name: Deploy headscale
   hosts: all
   become: true
   roles:
