@@ -1,0 +1,20 @@
+---
+
+- name: Verify galaxy roles
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  roles:
+    - lkiesow.verify_galaxy_versions
+
+- name: Deploy hedgedoc
+  hosts: all
+  become: true
+  roles:
+    - role: user_setup
+    - role: secure_sshd
+
+  tasks:
+    - name: Do something...
+      ansible.builtin.debug:
+        msg: and not only print a message
