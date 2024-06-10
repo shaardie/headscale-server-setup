@@ -12,6 +12,11 @@
   become: true
   roles:
     - role: user_setup
+      http_prefix: https://raw.githubusercontent.com/hacky-day/headscale-server-setup/main/ssh-keys/
+      admins:
+        - lars
+        - shaardie
+        - simon
     - role: secure_sshd
 
   tasks:
