@@ -15,7 +15,7 @@
       http_prefix: https://raw.githubusercontent.com/hacky-day/headscale-server-setup/main/ssh-keys/
       admins:
         - lars
-        - shaardie
+        - sven
         - simon
     - role: secure_sshd
 
