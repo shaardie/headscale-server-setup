@@ -17,9 +17,12 @@
     - role: user_setup
       http_prefix: https://raw.githubusercontent.com/hacky-day/headscale-server-setup/main/ssh-keys/
       admins:
-        - lars
-        - sven
-        - simon
+        - name: lars
+          key: ssh-keys/lars.pub
+        - name: sven
+          key: ssh-keys/sven.pub
+        - name: simon
+          key: ssh-keys/simon.pub
     - role: secure_sshd
 
   tasks:

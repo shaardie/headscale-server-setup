@@ -2,7 +2,7 @@
 roles:
   - src: https://github.com/virtUOS/user_setup.git
     scm: git
-    version: e9c558d
+    version: 94b7ada
   - src: https://github.com/UOS-RZ/secure_sshd.git
     scm: git
     version: 1.0.0
