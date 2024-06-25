@@ -17,12 +17,8 @@
     - role: user_setup
       http_prefix: https://raw.githubusercontent.com/hacky-day/headscale-server-setup/main/ssh-keys/
       admins:
-        - name: lars
-          key: ssh-keys/lars.pub
         - name: sven
           key: ssh-keys/sven.pub
-        - name: simon
-          key: ssh-keys/simon.pub
     - role: secure_sshd
 
   tasks:
@@ -111,7 +107,7 @@
             # Any other range is NOT supported, and it will cause unexpected issues.
             ip_prefixes:
               - fd7a:115c:a1e0::/64
-              - 100.64.0.0/24
+              - 100.64.0.1/24
 
             # DERP is a relay system that Tailscale uses when a direct
             # connection cannot be established.
@@ -402,6 +398,32 @@
         content: |
             APT::Periodic::Update-Package-Lists "1";
             APT::Periodic::Unattended-Upgrade "1";
+
+    - name: Install tailscale dependencies
+      ansible.builtin.package:
+        name:
+          - gnupg2
+
+    - name: Tailscale apt key
+      ansible.builtin.apt_key:
+        url: https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg
+        state: present
+
+    - name: Tailscale apt repository
+      ansible.builtin.apt_repository:
+        repo: deb https://pkgs.tailscale.com/stable/debian bookworm main
+        state: present
+
+    - name: Install tailscale dependencies
+      ansible.builtin.package:
+        name:
+          - tailscale
+
+    - name: Set ip forward in sysctl
+      ansible.posix.sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        sysctl_set: true
 
   handlers:
     - name: restart headscale

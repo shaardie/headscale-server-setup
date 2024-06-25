@@ -8,3 +8,6 @@ roles:
     version: 1.0.0
   - name: lkiesow.verify_galaxy_versions
     version: 1.0.0
+collections:
+  - name: ansible.posix
+    version: 1.5.4
